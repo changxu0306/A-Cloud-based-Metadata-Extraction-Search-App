@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>music</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/Newsletter-Subscription-Form.css">
+    <link rel="stylesheet" href="assets/css/facet.css">
+
+    <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" id="bootstrap-css">-->
+    <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>-->
+
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!--<script src="assets/jquery.min.js"></script>-->
+    <!--<script src="assets/bootstrap/js/bootstrap.min.js"></script>-->
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <nav class="navbar-light navbar-expand bg-light navigation-clean">
+
+        <div class="container">
+
+            <a class="navbar-brand" style="margin:10px 0px 0px 5px;" href="">Music Center</a>
+
+            <div class="column">
+            <!--<div class="collapse navbar-collapse" id="navcol-1">-->
+                <form class="form-inline" method="post">
+                    <input class="form-control"  name="search" type="search" style="font-size: 22px;width: 500px;">
+                    <div class="btn-group">
+                        <button class="btn btn-primary" type="submit" style="width: 100px;">search</button><button class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false" type="button"></button>
+                        <div class="dropdown-menu"
+                            role="menu"><a class="dropdown-item" role="presentation" href="index.html">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a>
+                        </div>
+                    </div>
+                </form>
+                <!--<a class="btn btn-primary ml-auto" role="button" href="#">Sign In</a>-->
+            <!--</div>-->
+                </div>
+
+        </div>
+    </nav>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-2">
+                   <div class="container">
+                        <div class="row">
+                            <div class="well" style="width:200px; padding: 8px 0;">
+                                <div style="overflow-y: scroll; overflow-x: hidden; ">
+                                    <ul class="nav nav-list">
+                                        <li><label class="tree-toggler nav-header">Artist</label>
+                                            <ul class="nav nav-list tree">
+                                                <!--<li><a href="#">DME Report</a></li>-->
+                                                <!--<li><a href="#">CAMB Report</a></li>-->
+                                                <!--<li><a href="#">LMAB Report</a></li>-->
+                                                <!--<li><a href="#">DMF Notification</a></li>-->
+                                                <!--<li><a href="#">LME Forecast Report</a></li>-->
+                                                <!--<form action="">-->
+                                                {% for line in artist %}
+
+                                                    <div class=" checkbox checkbox-circle" style="margin:0px 0px 0px -10px;">
+                                                        {% ifequal line.check 'True' %}
+                                                    <input onclick="check_artist()" type="checkbox" checked="checked" name="artist_check" id="{{line.artist}}" value="{{line.artist}}"/>
+                                                        {% else %}
+                                                        <input onclick="check_artist()" type="checkbox" name="artist_check" id="{{line.artist}}" value="{{line.artist}}"/>
+                                                        {% endifequal %}
+                                                    <label for="{{line.artist}}">{{line.artist}} <span class="badge">{{line.num}}</span></label>
+                                                    </div>
+                                                {% endfor %}
+                                                    <!--</form>-->
+
+                                                <script type="text/javascript">
+                                                    function check_artist(){
+                                                        var id_list = "";
+                                                        var x = document.getElementsByName("artist_check");
+
+                                                        for (i=0; i<x.length; i++) {
+                                                            if (x[i].checked == true) {
+                                                                var v=x[i].value.replace("&","*")
+                                                                id_list += "-"+v;
+                                                            }
+                                                        }
+                                                        var url = window.location.href;
+                                                        var two=url.toString().split("//");
+                                                        htt=two[0]
+                                                        two=two[1]
+                                                        two=two.split("/")
+                                                        var div=two[1].split("&");
+                                                        if(id_list == "" ){
+                                                                id_list ="None";
+                                                         }
+                                                        var new_url=htt+"//"+two[0]+"/"+div[0]+"&artist="+id_list+"&"+div[2]+"&"+div[3]+"&"+div[4];
+                                                        <!--alert(new_url)-->
+                                                        window.location=new_url
+
+                                                    }
+                                                </script>
+
+
+                                            </ul>
+                                        </li>
+                                        <!--<li class="divider"></li>-->
+                                        <HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="90%" color=#987cb9 SIZE=1>
+                                        <li><label class="tree-toggler nav-header">Genre</label>
+                                            <ul class="nav nav-list tree">
+                                                {% for line in genre %}
+                                                    <div class=" checkbox checkbox-circle" style="margin:0px 0px 0px -10px;">
+                                                        {% ifequal line.check 'True' %}
+                                                    <input onclick="check_genre()" checked="checked" type="checkbox" name="genre_check" id="{{line.genre}}" value="{{line.genre}}"/>
+                                                        {% else %}
+                                                     <input onclick="check_genre()" type="checkbox" name="genre_check" id="{{line.genre}}" value="{{line.genre}}"/>
+                                                        {% endifequal %}
+                                                    <label for="{{line.genre}}">{{line.genre}} <span class="badge">{{line.num}}</span></label>
+                                                    </div>
+                                                {% endfor %}
+
+                                                <script type="text/javascript">
+                                                    function check_genre(){
+                                                        var id_list = "";
+                                                        var x = document.getElementsByName("genre_check");
+
+                                                        for (i=0; i<x.length; i++) {
+                                                            if (x[i].checked == true) {
+                                                                var v=x[i].value.replace("&","*")
+                                                                id_list += "-"+v;
+                                                            }
+                                                        }
+                                                        var url = window.location.href;
+                                                        var two=url.toString().split("//");
+                                                        htt=two[0]
+                                                        two=two[1]
+                                                        two=two.split("/")
+                                                        var div=two[1].split("&");
+                                                        if(id_list == "" ){
+                                                                id_list ="None";
+                                                         }
+                                                        var new_url=htt+"//"+two[0]+"/"+div[0]+"&"+div[1]+"&"+div[2]+"&genre="+id_list+"&"+div[4];
+
+                                                        window.location=new_url
+
+                                                    }
+                                                </script>
+                                            </ul>
+                                        </li>
+                                        <!--<li class="divider"></li>-->
+                                        <HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="90%" color=#987cb9 SIZE=1>
+                                        <li><label class="tree-toggler nav-header">Album</label>
+                                            <ul class="nav nav-list tree">
+                                                {% for line in album %}
+                                                    <div class=" checkbox checkbox-circle" style="margin:0px 0px 0px -10px;">
+                                                        {% ifequal line.check 'True' %}
+                                                    <input type="checkbox" checked="checked"  onclick="check_album()" name="album_check" id="{{line.album}}" value="{{line.album}}" />
+                                                        {% else %}
+                                                        <input type="checkbox" onclick="check_album()" name="album_check" id="{{line.album}}" value="{{line.album}}" />
+                                                        {% endifequal %}
+
+                                                    <label for="{{line.album}}">{{line.album}} <span class="badge">{{line.num}}</span></label>
+                                                    </div>
+                                                {% endfor %}
+
+                                                <script type="text/javascript">
+                                                    function check_album(){
+                                                        var id_list = "";
+                                                        var x = document.getElementsByName("album_check");
+
+                                                        for (i=0; i<x.length; i++) {
+                                                            if (x[i].checked == true) {
+                                                                id_list += "-"+x[i].value;
+                                                            }
+                                                        }
+                                                        var url = window.location.href;
+                                                        var two=url.toString().split("//");
+                                                        htt=two[0]
+                                                        two=two[1]
+                                                        two=two.split("/")
+                                                        var div=two[1].split("&");
+                                                        if(id_list == "" ){
+                                                                id_list ="None";
+                                                         }
+                                                        var new_url=htt+"//"+two[0]+"/"+div[0]+"&"+div[1]+"&album="+id_list+"&"+div[3]+"&"+div[4];
+                                                        <!--alert(new_url)-->
+                                                        window.location=new_url
+
+                                                    }
+                                                </script>
+                                            </ul>
+                                        </li>
+                                        <HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="90%" color=#987cb9 SIZE=1>
+
+                                        <li><label class="tree-toggler nav-header">Date</label>
+                                            <ul class="nav nav-list tree">
+                                                {% for line in date %}
+
+                                                    <div class=" checkbox checkbox-circle" style="margin:0px 0px 0px -10px;">
+                                                        {% ifequal line.check 'True' %}
+                                                    <input type="checkbox" onclick="check_date()" name="date_check" checked="checked" id="{{line.date}}" value="{{line.date}}" />
+                                                        {% else %}
+                                                        <input type="checkbox" onclick="check_date()" name="date_check" id="{{line.date}}" value="{{line.date}}" />
+                                                        {% endifequal %}
+                                                    <label for="{{line.date}}">{{line.date}} <span class="badge">{{line.num}}</span></label>
+                                                    </div>
+                                                {% endfor %}
+
+                                                <script type="text/javascript">
+                                                    function check_date(){
+                                                        var id_list = "";
+                                                        var x = document.getElementsByName("date_check");
+
+                                                        for (i=0; i<x.length; i++) {
+                                                            if (x[i].checked == true) {
+                                                                id_list += "-"+x[i].value;
+                                                            }
+                                                        }
+                                                        var url = window.location.href;
+                                                        var two=url.toString().split("//");
+                                                        htt=two[0]
+                                                        two=two[1]
+                                                        two=two.split("/")
+                                                        var div=two[1].split("&");
+                                                        if(id_list == "" ){
+                                                                id_list ="None";
+                                                         }
+                                                        var new_url=htt+"//"+two[0]+"/"+div[0]+"&"+div[1]+"&"+div[2]+"&"+div[3]+"&date="+id_list;
+                                                        <!--alert(new_url)-->
+                                                        window.location=new_url
+
+                                                    }
+                                                </script>
+                                            </ul>
+                                        </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>$(document).ready(function () {
+                        $('label.tree-toggler').click(function () {
+                    $(this).parent().children('ul.tree').toggle(300);
+                });
+                    });
+                </script>
+
+                </div>
+
+                <div class="col">
+                    {% for line in dat%}
+                    <div class="media"><a href="details?name={{line.title}}"><img src="assets/image/{{line.title}}.jpg" class="mr-3" style="width: 200px;height: 200px;"></a>
+                            <div class="media-body">
+                                <p style="margin:10px 5px 15px 5px;">
+                                <a style="font-size:25px;" href="details?name={{line.title}}">{{line.title}}</a><br/>
+                                <a style="">artist:{{line.artist}}</a><br/>
+                                <a>album:{{line.album}}</a><br/>
+                                <a>genre:{{line.genre}}</a><br/>
+                                <a>composers:{{line.composer}}</a><br/>
+                                <a>date:{{line.date}}</a>
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+</body>
+
+</html>

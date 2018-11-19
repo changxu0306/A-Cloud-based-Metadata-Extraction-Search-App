@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>music</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/Newsletter-Subscription-Form.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand bg-light navigation-clean">
+        <div class="container"><a class="navbar-brand" href="index.html">Music Center</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <form class="form-inline" method="post"><input name="search"class="form-control" type="search" style="font-size: 22px;"></form><button class="btn btn-primary" type="submit">Button</button><a class="btn btn-primary ml-auto" role="button" href="#">Sign In</a></div>
+        </div>
+    </nav>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-xl-10" style="width: 770px;">
+                    {% for line in dat%}
+                        <div class="media"><img src="assets/image/{{line.title}}.jpg" class="mr-3" style="width: 200px;height: 200px;">
+                            <div class="media-body">
+                                <a href="assets/music/{{line.title}}.mp3" download="assets/music/{{line.title}}.mp3" >{{line.title}}</a>
+                                <audio src="assets/music/{{line.title}}.mp3" controls></audio>
+                                <p>
+                                    <a>{{line.title}}</a><br/>
+                                    <a>{{line.artist}}</a>
+                                </p>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+            <li class="page-item"><a class="page-link">1</a></li>
+            <li class="page-item"><a class="page-link">2</a></li>
+            <li class="page-item"><a class="page-link">3</a></li>
+            <li class="page-item"><a class="page-link">4</a></li>
+            <li class="page-item"><a class="page-link">5</a></li>
+            <li class="page-item"><a class="page-link" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+        </ul>
+    </nav>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+</body>
+
+</html>

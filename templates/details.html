@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>music</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/Newsletter-Subscription-Form.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica" />
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand bg-light navigation-clean">
+        <div class="container"><a class="navbar-brand" href="index.html">Music Center</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"></button>
+            <!--<div class="collapse navbar-collapse" id="navcol-1"><a class="btn btn-primary ml-auto" role="button" href="#">Sign In</a></div>-->
+        </div>
+    </nav>
+    <div class="container" style="height: 500px;">
+        <div class="media"><img src="assets/image/{{dat.title}}.jpg" class="mr-3" style="width: 300px;height: 300px;">
+            <div class="media-body">
+                <h5 style="height: 45px;font-size: 40px;color: rgb(118,120,120);font-family: Aclonica, sans-serif;">{{dat.title}}</h5>
+                <p style="font-size: 20px;font-family: Aclonica, sans-serif;color: rgb(96,80,210);">
+                    <a style="">artist:{{dat.artist}}</a><br/>
+                    <a>album:{{dat.album}}</a><br/>
+                    <a>genre:{{dat.genre}}</a><br/>
+                    <a>composers:{{dat.composer}}</a><br/>
+                    <a>date:{{dat.date}}</a>
+                </p>
+                <a style="background-color: #ef997e;font-size:20px" href="assets/music/{{dat.title}}.mp3" download="{{dat.title}}.mp3">Download</a><br/>
+                <audio id="player" src="assets/music/{{dat.title}}.mp3" controls preload>{{dat.title}}</audio></div>
+        </div>
+        <h1 style="font-size: 35px;">lyric</h1>
+        <div id="lrcArea"></div>
+        <script id="lrc" type="text">
+
+        </script>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+</body>
+
+</html>
